@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+Michael Bejaniance
+Michael_Bejaniance@student.uml.edu
+GUI I
+AS6.html
+-->
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="AS6.css">
+        <title>AS6</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--
+  load jQuery library from the Google Content Delivery Network (CDN)
+  see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+  however, note that you obviously must be online for this to work
+  alternatively, you can download jQuery and store it locally from
+     http://jquery.com/download/
+-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            
+        
+        function makeTable() {
+        //Take the users input and store each in a variable
+        var rowsMin = $('input[name=rowsMin').val();
+        var columnsMin = $('input[name=columnsMin').val();
+        var rowsMax = $('input[name=rowsMax').val();
+        var columnsMax = $('input[name=columnsMax').val();
+        var rowCount = rowsMax - rowsMin;
+        var columnCount = columnsMax - columnsMin;
+        var value;
+        //Store content to be placed on the page
+        var strContent = "";
+        var i, j, k;
+        //Output the user's inputs to console
+        console.log('Number of rowsMin: ' + rowsMin);
+        console.log('Number of rowsMax: ' + rowsMax);
+        console.log('Number of columnsMin: ' + columnsMin);
+        console.log('Number of columnsMax: ' + columnsMax);
+        console.log('Number of rowCount: ' + rowCount);
+        console.log('Number of columnCount: ' + columnCount);
+        //Check to make sure user's input is correct
+        if (rowCount > 15 || rowCount < 0) {
+            alert("Error: The range for your column is either greater than 15 or negative. (Inputs must be numbers from 0 to 15)");
+            return false;
+        }
+        if (columnCount > 15 || columnCount < 0) {
+            alert("Error: The range for your row is either greater than 15 or negative. (Inputs must be numbers from 0 to 15)");
+            return false;
+        }
+        if (isNaN(rowCount)) {
+            alert("Error: Column entry is Not a Number. (Inputs must be numbers from 0 to 15)");
+            return false;
+        }
+        if (isNaN(columnCount)) {
+            alert("Error: Row entry is Not a Number. (Inputs must be numbers from 0 to 15)");
+            return false;
+        }
+        //Defines the table
+        strContent += "<table class='sectionTable'>";
+        //Defines the table's first row
+        strContent += "<thead><tr>";
+        strContent += "<th>" + "</th>";
+        //Puts user input values for the first row
+        for (i = 1; i <= rowCount + 1; i++) {
+            value = parseInt(rowsMin) + (i - 1);
+            strContent += "<th>" + value + "</th>";
+        }
+        strContent += "</tr></thead>";
+        strContent += '<tbody>';
+        for (i = 0; i <= columnCount; i++) {
+            strContent += '<tr>';
+            //Put the first number to be multiplied into the columns
+            value = parseInt(columnsMin) + i;
+            strContent += '<td>' + value + "</td>";
+            //Fills the table with the products of the multiplication
+            for (j = 1; j <= rowCount + 1; j++) {
+                value = parseInt(rowsMin) + (j - 1);
+                //console.log("value before = " + value);
+                value *= (parseInt(columnsMin) + i);
+                strContent += "<td>" + value + "</td>";
+                
+            }
+            strContent += "</tr>";
+            
+        }
+        //closes the table
+        strContent += "</tbody></table>";
+        //Place the dynamic content on the page
+        document.getElementById("tableContent").innerHTML = strContent;
+    };
+        
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1>Multiplication Table Generator</h1>
+               
+        </div>
+            <form><!--Form for user to input the parameters-->
+                <label for="rowsMin"> Columns go from: </label>
+                <input type="text" name="rowsMin" id="rowsMin">
+                <label for="rowsMax"> to </label>
+                <input type="text" name="rowsMax" id="rowsMax">
+                <br>
+                <br>
+                <label for="columnsMin"> Rows go from:  </label>
+                <input type="text" name="columnsMin" id="columnsMin">
+                <label for="columnsMax"> to </label>
+                <input type="text" name="columnsMax" id="columnsMax">
+                <br>
+                <br>
+                <input type="button" value="Generate Table" onclick="makeTable()"><!--When user clicks the submit button the table is generated for the given inputs-->
+                <br>
+                <br>
+                <div id="tableContent"></div>
+                <br>
+            </form>
+    </body>
+</html>

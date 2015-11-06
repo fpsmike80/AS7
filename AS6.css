@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 22, 2015, 9:38:56 PM
+    Author     : Michael Bejaniance
+    AS6.css
+CSS for AS6.html
+*/
+
+html {
+    /*CSS Reset*/
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*CSS Reset*/
+    margin: 0;
+    padding: 0;
+}
+
+.sectionTable {
+    /*Styles the table*/
+    border: 1px solid #ff4500;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Courier;
+    margin-left: 40px;
+}
+
+.sectionTable thead th {
+    /*Styles top row of table*/
+    border: 1px solid black;
+    background-color: yellow;
+    color: black;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.sectionTable tbody td {
+    /*Styles table data*/
+    border: 1px solid black;
+    color: black;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.sectionTable tbody td:first-child {
+    /*Styles leftmost column*/
+    background-color: yellow;
+}
+
+
+
+
+.sectionTable tbody tr {
+    background-color: orange;
+}
